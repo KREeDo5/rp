@@ -39,7 +39,7 @@ public partial class IndexModel : PageModel
 
         string similarityKey = "SIMILARITY-" + id;
         // TODO: (pa1) посчитать similarity и сохранить в БД (Redis) по ключу similarityKey
-        int similarity = CalculateSimilarity(text);
+        int similarity = CalculateSimilarity(text, textKey);
         redisDatabase.StringSet(similarityKey, similarity);
 
         return Redirect($"summary?id={id}");
@@ -52,19 +52,25 @@ public partial class IndexModel : PageModel
     {   
 
         var nonAlphabeticCount = MyRegex().Matches(text).Count;
-        return (double)nonAlphabeticCount / text.Length;
+        double rank = (double)nonAlphabeticCount / text.Length;
+        return Math.Round(rank, 3);
     }
     
     // Проверка на похожесть делается на основе поиска дубликата текста среди ранее обработанных.
     // Если найден дубликат, то similarity = 1, иначе 0.
-    private int CalculateSimilarity(string text)
+    private int CalculateSimilarity(string text, string currentKey)
     {   
         var redisDatabase = _redis.GetDatabase();
         var server = _redis.GetServer(_redis.GetEndPoints().First());
         var keys = server.Keys(pattern: "TEXT-*");
         
         foreach (var key in keys)
-        {
+        {   
+            if (key == currentKey)
+            {
+                continue;
+            }
+            
             string storedText = redisDatabase.StringGet(key);
             if (storedText == text)
             {

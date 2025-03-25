@@ -26,9 +26,9 @@ namespace Valuator.Pages
 
         public void OnGet()
         {
-            var db = _redis.GetDatabase();
-            Name = db.StringGet("studentName");
-            Group = db.StringGet("groupName");
+            var redisDatabase = _redis.GetDatabase();
+            Name = redisDatabase.StringGet("studentName");
+            Group = redisDatabase.StringGet("groupName");
             
             Name = !string.IsNullOrEmpty(Name) ? Encoding.UTF8.GetString(Encoding.Default.GetBytes(Name)) : "Имя не указано";
 

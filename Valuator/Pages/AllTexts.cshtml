@@ -1,0 +1,18 @@
+@page
+@model Valuator.Pages.AllTextsModel
+@{
+    ViewData["Title"] = "Все тексты";
+}
+
+<h2>Все тексты</h2>
+
+<div>
+    @foreach (var kvp in Model.Texts)
+    {
+        <div style="border: 1px solid black; padding: 5px; margin-bottom: 10px;">
+            <h2>@kvp.Key</h2>
+            <p>@kvp.Value</p>
+        </div>
+    }
+</div>
+

@@ -72,3 +72,29 @@ http://nginx.org/en/docs/http/load_balancing.html#nginx_load_balancing_methods
 1. [Nginx](http://nginx.org/ru/)
 2. [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
 3. [Запуск nginx в docker-compose](https://atdd.ru/nginx/nginx-in-docker-compose.html)
+
+Моя инструкция:
+,,,,,,,,,,,,,LW1,,,,,,,,,,,,,,,,
+Подключение к Redis, чтобы сохранить ключи:
+docker exec -it redis-container redis-cli
+
+Сохранение данных:
+SET studentName "Имя"
+Получение данных:
+GET studentName
+
+dotnet run --urls "http://0.0.0.0:5001"
+http://localhost:5001/
+
+docker run -p <host_port>:<container_port> <image_name>
+docker run -p 8080:80 my_image
+
+,,,,,,,,,,,,,LW2,,,,,,,,,,,,,,,,
+
+D:/Repos/Github/raspredellennoe-programmirovanie/nginx/conf/nginx.conf
+
+Запуск контейнера с конфигурацией (nginx.conf):
+docker run -d -p 8080:8080 -v D:/Repos/Github/raspredellennoe-programmirovanie/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro --name nginx-proxy nginx
+
+Проверка работы прокси-сервера:
+http://localhost:8080/

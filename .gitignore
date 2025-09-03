@@ -1,0 +1,5 @@
+StringLib/obj/
+StringLib.Tests/obj/
+StringLib.Tests/bin/
+StringLib/bin/
+.idea/

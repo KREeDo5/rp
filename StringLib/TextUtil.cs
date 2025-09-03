@@ -29,12 +29,18 @@ public static class TextUtil
         {
             return "";
         }
-        // TODO: text - это строка
-        // TODO: Разбиваем text на слова методом SplitIntoWords
-        // TODO: Каждую строку из массива переворачиваем Reverse().ToString()
-        // TODO: Далее каждую обработанную строку массива схлопываем в единую строку
 
-        // Console.WriteLine("text");
-        return text.Reverse().ToString() ?? text;
+        // Регулярное выражение для поиска слов, которые можно перевернуть:
+        // - Слово содержит только буквы A-Z, a-z, а-я, А-Я, ё, Ё.
+        // - Имеет длину не менее двух символов.
+        const string pattern = @"[A-Za-zА-Яа-яЁё]{2,}";
+        
+        return Regex.Replace(
+            text,
+            pattern,
+            match => ReverseString(match.Value)
+        );
     }
+    
+    private static string ReverseString(string str) => new string(str.Reverse().ToArray());
 }

@@ -1,0 +1,12 @@
+D:\Repos\Github\rp-summer\task03\ModelLib\bin\Debug\net8.0\ModelLib.deps.json
+D:\Repos\Github\rp-summer\task03\ModelLib\bin\Debug\net8.0\ModelLib.dll
+D:\Repos\Github\rp-summer\task03\ModelLib\bin\Debug\net8.0\ModelLib.pdb
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.AssemblyInfoInputs.cache
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.AssemblyInfo.cs
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.csproj.CoreCompileInputs.cache
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.sourcelink.json
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.dll
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\refint\ModelLib.dll
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ModelLib.pdb
+D:\Repos\Github\rp-summer\task03\ModelLib\obj\Debug\net8.0\ref\ModelLib.dll

@@ -1,0 +1,12 @@
+D:\Repos\Github\rp-summer\task02\GeometryLib\bin\Debug\net8.0\GeometryLib.deps.json
+D:\Repos\Github\rp-summer\task02\GeometryLib\bin\Debug\net8.0\GeometryLib.dll
+D:\Repos\Github\rp-summer\task02\GeometryLib\bin\Debug\net8.0\GeometryLib.pdb
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.AssemblyInfoInputs.cache
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.AssemblyInfo.cs
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.csproj.CoreCompileInputs.cache
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.sourcelink.json
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.dll
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\refint\GeometryLib.dll
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\GeometryLib.pdb
+D:\Repos\Github\rp-summer\task02\GeometryLib\obj\Debug\net8.0\ref\GeometryLib.dll

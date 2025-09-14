@@ -3,17 +3,11 @@ namespace LW_2_ConsoleApp;
 /// <summary>
 /// Структура Point2D представляет точку в двухмерном Евклидовом пространстве
 /// </summary>
-public readonly struct Point2D
-{   
-    public Point2D(double x, double y)
-    {
-        X = x;
-        Y = y;
-    }
-    
-    public double X { get;  }
-    public double Y { get; }
-    
+public readonly struct Point2D(double x, double y)
+{
+    public double X { get;  } = x;
+    public double Y { get; } = y;
+
     /// <summary>
     /// Евклидово расстояние: sqrt((x1 - x2)^2 + (y1 - y2)^2)
     /// Длина кратчайшей прямой линии между двумя точками в многомерном пространстве,

@@ -17,7 +17,7 @@ public class Circle2D
     }
     
     private Point2D _center;
-    private double _radius;
+    private readonly double _radius;
     
     public double Diameter => _radius * 2;
 
@@ -30,11 +30,13 @@ public class Circle2D
     /// Возвращает площадь круга
     /// </summary>
     private double Area => Math.PI * Math.Pow(_radius, 2);
-
-    private static double DistanceTo(Point2D p)
+    
+    /// <summary>
+    /// Возвращает расстояние от точки `p` до ближайшей точки окружности
+    /// </summary>
+    private double DistanceTo(Point2D p)
     {
-        //TODO: - метод double DistanceTo(Point2D p), возвращающий расстояние от данной точки до ближайшей точки окружности
-        return 0.0;
+        return _radius - p.DistanceTo(_center);
     }
 
     private static double DistanceTo(Circle2D p)

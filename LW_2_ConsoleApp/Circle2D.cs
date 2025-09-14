@@ -38,31 +38,42 @@ public class Circle2D
     {
         return Radius - p.DistanceTo(Center);
     }
-    
+
+
+    private double DistanceToAnotherCircle(Circle2D p)
+    {
+        var distanceBetweenCenters = Center.DistanceTo(p.Center);
+        return distanceBetweenCenters - Radius - p.Radius;
+    }
+
     /// <summary>
     /// Возвращает расстояние между ближайшими друг к другу точками окружностей
     /// </summary>
     private double DistanceTo(Circle2D p)
     {
-        var distanceBetweenCenters = Center.DistanceTo(p.Center);
-        var result = distanceBetweenCenters - Radius - p.Radius;
+        var result = DistanceToAnotherCircle(p);
         if (result > 0)
         {
             return result;
         }
         return 0;
     }
-
-    private static bool Contains(Point2D p)
+    
+    /// <summary>
+    /// Лежит ли точка внутри круга
+    /// </summary>
+    private bool Contains(Point2D p)
     {
-        //TODO: - метод bool Contains(Point2D p), проверяющий, лежит ли точка внутри круга
-        return false;
+        return Center.DistanceTo(p) <= Radius;
     }
-
-    private static bool IntersectsWith(Circle2D other)
+    
+    /// <summary>
+    /// Пересекаются ли окружности
+    /// </summary>
+    private bool IntersectsWith(Circle2D other)
     {
-        //TODO: - метод bool IntersectsWith(Circle2D other), определяющий, пересекаются ли два круга
-        return false;
+        var result = DistanceToAnotherCircle(other);
+        return result <= 0;
     }
 
     private static bool Contains(Circle2D other)

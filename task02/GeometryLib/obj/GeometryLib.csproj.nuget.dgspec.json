@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj": {}
+    "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj": {}
   },
   "projects": {
-    "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj": {
+    "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj",
+        "projectUniqueName": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj",
         "projectName": "GeometryLib",
-        "projectPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj",
+        "projectPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj",
         "packagesPath": "C:\\Users\\dimal\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\obj\\",
+        "outputPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -40,7 +40,7 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "false",
+          "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
         },
@@ -49,24 +49,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.CodeAnalysis.NetAnalyzers": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Roslynator.Analyzers": {
-              "target": "Package",
-              "version": "[4.13.1, )"
-            },
-            "StyleCop.Analyzers": {
-              "target": "Package",
-              "version": "[1.1.118, )"
-            },
-            "xunit.analyzers": {
-              "target": "Package",
-              "version": "[1.23.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

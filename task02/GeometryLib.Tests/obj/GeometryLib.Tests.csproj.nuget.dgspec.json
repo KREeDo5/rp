@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj": {}
+    "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj": {
+    "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj",
+        "projectUniqueName": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj",
         "projectName": "GeometryLib.Tests",
-        "projectPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj",
+        "projectPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib.Tests\\GeometryLib.Tests.csproj",
         "packagesPath": "C:\\Users\\dimal\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib.Tests\\obj\\",
+        "outputPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj": {
-                "projectPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj"
+              "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj": {
+                "projectPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj"
               }
             }
           }
@@ -44,7 +44,7 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "false",
+          "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
         },
@@ -54,21 +54,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.CodeAnalysis.NetAnalyzers": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.8.0, )"
-            },
-            "Roslynator.Analyzers": {
-              "target": "Package",
-              "version": "[4.13.1, )"
-            },
-            "StyleCop.Analyzers": {
-              "target": "Package",
-              "version": "[1.1.118, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -77,10 +65,6 @@
             "xunit": {
               "target": "Package",
               "version": "[2.5.3, )"
-            },
-            "xunit.analyzers": {
-              "target": "Package",
-              "version": "[1.23.0, )"
             },
             "xunit.runner.visualstudio": {
               "target": "Package",
@@ -107,14 +91,14 @@
         }
       }
     },
-    "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj": {
+    "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj",
+        "projectUniqueName": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj",
         "projectName": "GeometryLib",
-        "projectPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj",
+        "projectPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj",
         "packagesPath": "C:\\Users\\dimal\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\obj\\",
+        "outputPath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -143,7 +127,7 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "false",
+          "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
         },
@@ -152,24 +136,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.CodeAnalysis.NetAnalyzers": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Roslynator.Analyzers": {
-              "target": "Package",
-              "version": "[4.13.1, )"
-            },
-            "StyleCop.Analyzers": {
-              "target": "Package",
-              "version": "[1.1.118, )"
-            },
-            "xunit.analyzers": {
-              "target": "Package",
-              "version": "[1.23.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

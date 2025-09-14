@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9afP6JdLEd8=",
+  "dgSpecHash": "EKeDsps4Gu8=",
   "success": true,
-  "projectFilePath": "D:\\Repos\\Github\\rp-summer\\task02\\GeometryLib\\GeometryLib.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\dimal\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\8.0.0\\microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512",
-    "C:\\Users\\dimal\\.nuget\\packages\\roslynator.analyzers\\4.13.1\\roslynator.analyzers.4.13.1.nupkg.sha512",
-    "C:\\Users\\dimal\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
-    "C:\\Users\\dimal\\.nuget\\packages\\xunit.analyzers\\1.23.0\\xunit.analyzers.1.23.0.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\Repos\\Github\\raspredellennoe-programmirovanie\\task02\\GeometryLib\\GeometryLib.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

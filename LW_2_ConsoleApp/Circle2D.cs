@@ -12,37 +12,45 @@ public class Circle2D
         {
             throw new ArgumentOutOfRangeException(nameof(radius), "Радиус должен быть положительным.");
         }
-        _center = center;
-        _radius = radius;
+        Center = center;
+        Radius = radius;
     }
     
-    private Point2D _center;
-    private readonly double _radius;
-    
-    public double Diameter => _radius * 2;
+    private Point2D Center { get; }
+    private double Radius { get; }
+
+    public double Diameter => Radius * 2;
 
     /// <summary>
     /// Возвращает длину окружности
     /// </summary>
-    private double Circumference => 2 * Math.PI * _radius;
+    private double Circumference => 2 * Math.PI * Radius;
     
     /// <summary>
     /// Возвращает площадь круга
     /// </summary>
-    private double Area => Math.PI * Math.Pow(_radius, 2);
+    private double Area => Math.PI * Math.Pow(Radius, 2);
     
     /// <summary>
     /// Возвращает расстояние от точки `p` до ближайшей точки окружности
     /// </summary>
     private double DistanceTo(Point2D p)
     {
-        return _radius - p.DistanceTo(_center);
+        return Radius - p.DistanceTo(Center);
     }
-
-    private static double DistanceTo(Circle2D p)
+    
+    /// <summary>
+    /// Возвращает расстояние между ближайшими друг к другу точками окружностей
+    /// </summary>
+    private double DistanceTo(Circle2D p)
     {
-        //TODO: - метод double DistanceTo(Circle2D p), возвращающий расстояние между ближайшими друг к другу точками окружностей
-        return 0.0;
+        var distanceBetweenCenters = Center.DistanceTo(p.Center);
+        var result = distanceBetweenCenters - Radius - p.Radius;
+        if (result > 0)
+        {
+            return result;
+        }
+        return 0;
     }
 
     private static bool Contains(Point2D p)

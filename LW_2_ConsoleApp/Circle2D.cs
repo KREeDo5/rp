@@ -6,19 +6,19 @@ namespace LW_2_ConsoleApp;
 //TODO: реализовать класс Circle2D 
 public class Circle2D
 {
-    //TODO: - конструктор Circle2D(Point2D center, double radius) - изучить подробнее про конструкторы в C#
+    public Circle2D(Point2D center, double radius)
+    {
+        if (radius <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(radius), "Радиус должен быть положительным.");
+        }
+        _center = center;
+        _radius = radius;
+    }
     
-    // private Point2D _center;
-    // private double _radius;
-    // public Circle2D(Point2D center, double radius)
-    // {
-    //     //TODO: --- следует соблюдать инвариант: радиус круга должен быть положительными
-    //     if (radius <= 0)
-    //         throw new ArgumentOutOfRangeException(nameof(radius), "Радиус должен быть положительным.");
-    //     _center = center;
-    //     _radius = radius;
-    // }
-    
+    private Point2D _center;
+    private double _radius;
+
     //TODO: - свойство double Diameter, возвращающее диаметр
     //TODO: - свойство double Circumference, возвращающее длину окружности
     //TODO: - свойство double Area, возвращающее площадь круга
@@ -43,6 +43,7 @@ public class Circle2D
         //TODO: - метод bool Contains(Point2D p), проверяющий, лежит ли точка внутри круга
         return false;
     }
+
     private static bool IntersectsWith(Circle2D other)
     {
         //TODO: - метод bool IntersectsWith(Circle2D other), определяющий, пересекаются ли два круга

@@ -18,14 +18,18 @@ public class Circle2D
     
     private Point2D _center;
     private double _radius;
- 
-    //TODO: - свойство double Diameter, возвращающее диаметр
+    
     public double Diameter => _radius * 2;
 
-    //TODO: - свойство double Circumference, возвращающее длину окружности
-    //TODO: - свойство double Area, возвращающее площадь круга
-    private double _circumference;
-    private double _area;
+    /// <summary>
+    /// Возвращает длину окружности
+    /// </summary>
+    private double Circumference => 2 * Math.PI * _radius;
+    
+    /// <summary>
+    /// Возвращает площадь круга
+    /// </summary>
+    private double Area => Math.PI * Math.Pow(_radius, 2);
 
     private static double DistanceTo(Point2D p)
     {

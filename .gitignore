@@ -1,0 +1,11 @@
+task01/StringLib/obj/
+task01/StringLib.Tests/obj/
+task01/StringLib.Tests/bin/
+task01/StringLib/bin/
+task01/.idea/
+
+task02/GeometryLib/obj/
+task02/GeometryLib.Tests/obj/
+task02/GeometryLib.Tests/bin/
+task02/GeometryLib/bin/
+task02/.idea/

@@ -9,3 +9,9 @@ task02/GeometryLib.Tests/obj/
 task02/GeometryLib.Tests/bin/
 task02/GeometryLib/bin/
 task02/.idea/
+
+task03/ModelLib/obj/
+task03/ModelLib.Tests/obj/
+task03/ModelLib.Tests/bin/
+task03/ModelLib/bin/
+task03/.idea/

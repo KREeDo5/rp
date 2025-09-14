@@ -1,5 +1,5 @@
-StringLib/obj/
-StringLib.Tests/obj/
-StringLib.Tests/bin/
-StringLib/bin/
-.idea/
+task01/StringLib/obj/
+task01/StringLib.Tests/obj/
+task01/StringLib.Tests/bin/
+task01/StringLib/bin/
+task01/idea/

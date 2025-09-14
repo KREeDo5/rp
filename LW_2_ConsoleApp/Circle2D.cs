@@ -3,7 +3,6 @@ namespace LW_2_ConsoleApp;
 /// <summary>
 /// Класс Circle2D представляет круг в двухмерном Евклидовом пространстве.
 /// </summary>
-//TODO: реализовать класс Circle2D 
 public class Circle2D
 {
     public Circle2D(Point2D center, double radius)
@@ -38,7 +37,6 @@ public class Circle2D
     {
         return Radius - p.DistanceTo(Center);
     }
-
 
     private double DistanceToAnotherCircle(Circle2D p)
     {
@@ -76,9 +74,11 @@ public class Circle2D
         return result <= 0;
     }
 
-    private static bool Contains(Circle2D other)
+    /// <summary>
+    /// Лежит ли другой круг полностью внутри этого круга
+    /// </summary>
+    private bool Contains(Circle2D other)
     {
-        //TODO: - метод bool Contains(Circle2D other), проверяющий, лежит ли другой круг полностью внутри этого круга
-        return false;
+        return (Center.DistanceTo(other.Center) + other.Radius) <= Radius;
     }
 }

@@ -25,12 +25,12 @@ public class Circle2D
     /// <summary>
     /// Возвращает длину окружности
     /// </summary>
-    private double Circumference => 2 * Math.PI * Radius;
+    public double Circumference => 2 * Math.PI * Radius;
 
     /// <summary>
     /// Возвращает площадь круга
     /// </summary>
-    private double Area => Math.PI * Math.Pow(Radius, 2);
+    public double Area => Math.PI * Math.Pow(Radius, 2);
 
     /// <summary>
     /// Возвращает расстояние от точки `p` до ближайшей точки окружности

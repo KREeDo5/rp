@@ -71,7 +71,7 @@ public class Circle2D
     /// <summary>
     /// Пересекаются ли окружности
     /// </summary>
-    private bool IntersectsWith(Circle2D other)
+    public bool IntersectsWith(Circle2D other)
     {
         double result = DistanceToAnotherCircle(other);
         return result <= 0;

@@ -48,9 +48,29 @@ public class Circle2DTests
         double area = Math.PI * Math.Pow(circleRadius, 2);
         Assert.Equal(area, new Circle2D(center, circleRadius).Area);
     }
+    
+    [Theory]
+    [MemberData(nameof(IntersectsCircleTestData))]
+    public void Can_check_that_circles_intersect(Circle2D a, Circle2D b, bool expected)
+    {
+        bool result = a.IntersectsWith(b);
+        Assert.Equal(expected, result);
+    }
 
-    //TODO: Тест метода DistanceToAnotherCircle
+    public static TheoryData<Circle2D, Circle2D, bool> IntersectsCircleTestData()
+    {
+        return new TheoryData<Circle2D, Circle2D, bool>
+        {   
+            // Одинаковые круги в одной позиции
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(0, 0), 2), true },
+            // Круг в другом круге
+            { new Circle2D(new Point2D(0, 0), 20), new Circle2D(new Point2D(0, 0), 1), true },
+            // Круги касаются внешними точками
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(4, 0), 2), true },
+            // Круги пересекаются в двух точках (Круги Эйлера)
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(2, 0), 2), true },
+        };
+    }
     //TODO: Тест метода DistanceTo (перегруженный метод) (перегруженный метод [Point2D, Circle2D])
-    //TODO: Тест метода IntersectsWith
     //TODO: Тест метода Contains (перегруженный метод [Point2D, Circle2D])
 }

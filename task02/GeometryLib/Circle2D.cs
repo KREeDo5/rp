@@ -16,9 +16,9 @@ public class Circle2D
         Radius = radius;
     }
 
-    private Point2D Center { get; }
+    public Point2D Center { get; }
 
-    private double Radius { get; }
+    public double Radius { get; }
 
     public double Diameter => Radius * 2;
 

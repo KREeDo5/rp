@@ -12,15 +12,25 @@ public class Circle2DTests
         Assert.Equal(center, circle.Center);
         Assert.Equal(circleRadius, circle.Radius);
     }
-    /// Тест инициализации круга с отрицательным радиусом
-    [Fact]
-    public void Cannot_Init_Circle()
-    {
-        Point2D center = new Point2D(0, 0);
-        const double circleRadius = - 2.0;
-        Assert.Throws<ArgumentOutOfRangeException>(() => new Circle2D(center, circleRadius));
-    }
     
+    /// Тест инициализации круга с некорректным радиусом
+    [Theory]
+    [MemberData(nameof(ExceptionInitCircleTestData))]
+    public void Cannot_Init_Circle(Point2D center, double radius)
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => new Circle2D(center, radius));
+    }
+
+    public static TheoryData<Point2D, double> ExceptionInitCircleTestData()
+    {
+        return new TheoryData<Point2D, double>
+        {   
+            // Инициализация с отрицательным радиусом
+            {  new Point2D(0, 0), - 2.0 },
+            // Инициализация с нулевым радиусом
+            {  new Point2D(0, 0), 0.0 },
+        };
+    }
   
     [Fact]
     public void Can_Get_Diameter()

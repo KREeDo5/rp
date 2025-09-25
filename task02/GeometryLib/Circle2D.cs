@@ -56,20 +56,20 @@ public class Circle2D
     }
 
     /// <summary>
-    /// Лежит ли точка внутри круга
-    /// </summary>
-    private bool Contains(Point2D p)
-    {
-        return Center.DistanceTo(p) <= Radius;
-    }
-
-    /// <summary>
     /// Пересекаются ли окружности
     /// </summary>
     public bool IntersectsWith(Circle2D other)
     {
         double result = DistanceTo(other);
         return result == 0;
+    }
+    
+    /// <summary>
+    /// Лежит ли точка внутри круга
+    /// </summary>
+    private bool Contains(Point2D p)
+    {
+        return Center.DistanceTo(p) <= Radius;
     }
 
     /// <summary>

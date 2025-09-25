@@ -35,23 +35,18 @@ public class Circle2D
     /// <summary>
     /// Возвращает расстояние от точки `p` до ближайшей точки окружности
     /// </summary>
-    private double DistanceTo(Point2D p)
+    public double DistanceTo(Point2D p)
     {
         return Radius - p.DistanceTo(Center);
-    }
-
-    private double DistanceToAnotherCircle(Circle2D p)
-    {
-        double distanceBetweenCenters = Center.DistanceTo(p.Center);
-        return distanceBetweenCenters - Radius - p.Radius;
     }
 
     /// <summary>
     /// Возвращает расстояние между ближайшими друг к другу точками окружностей
     /// </summary>
-    private double DistanceTo(Circle2D p)
-    {
-        double result = DistanceToAnotherCircle(p);
+    public double DistanceTo(Circle2D p)
+    {   
+        double distanceBetweenCenters = Center.DistanceTo(p.Center);
+        double result = distanceBetweenCenters - Radius - p.Radius;
         if (result > 0)
         {
             return result;
@@ -73,8 +68,8 @@ public class Circle2D
     /// </summary>
     public bool IntersectsWith(Circle2D other)
     {
-        double result = DistanceToAnotherCircle(other);
-        return result <= 0;
+        double result = DistanceTo(other);
+        return result == 0;
     }
 
     /// <summary>

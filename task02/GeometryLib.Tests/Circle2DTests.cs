@@ -81,6 +81,41 @@ public class Circle2DTests
             { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(2, 0), 2), true },
         };
     }
-    //TODO: Тест метода DistanceTo (перегруженный метод) (перегруженный метод [Point2D, Circle2D])
+    
+    [Theory]
+    [MemberData(nameof(DistanceToPointTestData))]
+    public void Can_calculate_distance_to_point(Circle2D circle, Point2D point, double expected)
+    {
+        double result = circle.DistanceTo(point);
+        Assert.Equal(expected, result);
+    }
+    //TODO: Тест метода DistanceTo (перегруженный метод [Point2D])
+    public static TheoryData<Circle2D, Point2D, double> DistanceToPointTestData()
+    {
+        return new TheoryData<Circle2D, Point2D, double>
+        {   
+            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, 0), 0.0},
+        };
+    }
+    
+    
+    [Theory]
+    [MemberData(nameof(DistanceToCircleTestData))]
+    public void Can_calculate_distance_to_another_circle(Circle2D circle, Circle2D point, double expected)
+    {
+        double result = circle.DistanceTo(point);
+        Assert.Equal(expected, result);
+    }
+    //TODO: Тест метода DistanceTo (перегруженный метод [Circle2D])
+    public static TheoryData<Circle2D, Circle2D, double> DistanceToCircleTestData()
+    {
+        return new TheoryData<Circle2D, Circle2D, double>
+        {   
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(0, 0), 0), 0.0},
+        };
+    }
+
+    
+    
     //TODO: Тест метода Contains (перегруженный метод [Point2D, Circle2D])
 }

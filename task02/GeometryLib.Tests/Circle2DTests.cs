@@ -89,12 +89,19 @@ public class Circle2DTests
         double result = circle.DistanceTo(point);
         Assert.Equal(expected, result);
     }
-    //TODO: Тест метода DistanceTo (перегруженный метод [Point2D])
+
     public static TheoryData<Circle2D, Point2D, double> DistanceToPointTestData()
     {
         return new TheoryData<Circle2D, Point2D, double>
         {   
-            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, 0), 0.0},
+            // Точка внутри окружности
+            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, 0), 2.0},
+            // Точка на окружности
+            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, 2), 0.0},
+            // Точка вне окружности
+            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, 3), 1.0},
+            // Тест с отрицательными координатами
+            { new Circle2D(new Point2D(0, 0), 2), new Point2D(0, -3), 1.0},
         };
     }
     

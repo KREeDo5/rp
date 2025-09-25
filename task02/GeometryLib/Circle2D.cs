@@ -37,7 +37,8 @@ public class Circle2D
     /// </summary>
     public double DistanceTo(Point2D p)
     {
-        return Radius - p.DistanceTo(Center);
+        double result = Radius - p.DistanceTo(Center);
+        return Math.Abs(result);
     }
 
     /// <summary>

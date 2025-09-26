@@ -74,7 +74,7 @@ public class Circle2DTests
             // Одинаковые круги в одной позиции
             { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(0, 0), 2), true },
             // Круг в другом круге
-            { new Circle2D(new Point2D(0, 0), 20), new Circle2D(new Point2D(0, 0), 1), true },
+            { new Circle2D(new Point2D(0, 0), 20), new Circle2D(new Point2D(0, 0), 1), false },
             // Круги касаются внешними точками
             { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(4, 0), 2), true },
             // Круги пересекаются в двух точках (Круги Эйлера)
@@ -118,7 +118,20 @@ public class Circle2DTests
     {
         return new TheoryData<Circle2D, Circle2D, double>
         {   
-            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(0, 0), 0), 0.0},
+            // Равные окружности на одной позиции
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(0, 0), 2), 0.0},
+            
+            // Окружность внутри окружности
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(0, 0), 1), 1.0},
+            
+            // Окружности не пересекаются
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(5, 0), 1), 2.0},
+            
+            // Окружности касаются внешними точками
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(4, 0), 2), 0.0},
+            
+            // Окружности пересекаются в двух точках (Круги Эйлера)
+            { new Circle2D(new Point2D(0, 0), 2),  new Circle2D(new Point2D(3, 0), 2), 0.0},
         };
     }
 

@@ -15,7 +15,7 @@ public class Circle2D
         Center = center;
         Radius = radius;
     }
-    
+
     // Максимальное отклонение, при котором значения всё ещё считаются равными.
     private const double Tolerance = 1e-10;
 
@@ -53,21 +53,25 @@ public class Circle2D
         double sumOfTwoRadius = Radius + p.Radius;
         // Если центры окружностей не совпадают
         if (distanceBetweenCenters > 0)
-        {   
+        {
             // Если окружности находятся не друг в друге и не пересекаются
             if (sumOfTwoRadius < distanceBetweenCenters)
             {
                 return distanceBetweenCenters - sumOfTwoRadius;
             }
-             // Если одна окружность полностью внутри другой
-            // if (sumOfTwoRadius > distanceBetweenCenters)
-            // {
-            //     return distanceBetweenCenters + Math.Min(p.Radius, Radius);
-            // } 
-            if (distanceBetweenCenters + Math.Min(p.Radius, Radius) < Math.Max(p.Radius, Radius))
+
+            // Если одна окружность полностью внутри другой
+            double minR = Math.Min(p.Radius, Radius);
+            double maxR = Math.Max(p.Radius, Radius);
+            if (distanceBetweenCenters + minR < maxR)
             {
-                return Math.Max(p.Radius, Radius) - (distanceBetweenCenters + Math.Min(p.Radius, Radius));
+                return maxR - (distanceBetweenCenters + minR);
             }
+        }
+        // Если центры окружностей совпадают, но радиусы разные
+        else if (Math.Abs(p.Radius - Radius) > Tolerance)
+        {
+            return Math.Abs(p.Radius - Radius);
         }
 
         return 0;
@@ -77,7 +81,7 @@ public class Circle2D
     /// Пересекаются ли окружности
     /// </summary>
     public bool IntersectsWith(Circle2D other)
-    {   
+    {
         double result = DistanceTo(other);
         return result < Tolerance;
     }

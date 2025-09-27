@@ -170,7 +170,6 @@ public class Circle2DTests
     [MemberData(nameof(ContainCircleTestData))]
     public void Can_check_that_circle_contain_circle(Circle2D a, Circle2D b, bool expected)
     {
-        //TODO: Тест метода Contains (перегруженный метод [Point2D, Circle2D])
         bool result = a.Contains(b);
         Assert.Equal(expected, result);
     }
@@ -178,8 +177,21 @@ public class Circle2DTests
     public static TheoryData<Circle2D, Circle2D, bool> ContainCircleTestData()
     {
         return new TheoryData<Circle2D, Circle2D, bool>
-        {
-            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(0, 0), 2), false },
+        {   
+            // Второй круг лежит на первом
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(0, 0), 2), true },
+            
+            // Второй круг лежит внутри первого
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(0, 0), 1), true },
+            
+            // Второй круг не пересекается с первым и не лежит в нём
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(10, 10), 1), false },
+            
+            // Второй круг пересекается с первым в одной точке
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(4, 0), 2), false },
+            
+            // Второй круг пересекается с первым в двух точках
+            { new Circle2D(new Point2D(0, 0), 2), new Circle2D(new Point2D(3, 0), 2), false },
         };
     }
 }

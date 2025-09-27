@@ -89,7 +89,7 @@ public class Circle2D
     /// <summary>
     /// Лежит ли точка внутри круга
     /// </summary>
-    private bool Contains(Point2D p)
+    public bool Contains(Point2D p)
     {
         return Center.DistanceTo(p) <= Radius;
     }
@@ -97,8 +97,9 @@ public class Circle2D
     /// <summary>
     /// Лежит ли другой круг полностью внутри этого круга
     /// </summary>
-    private bool Contains(Circle2D other)
+    public bool Contains(Circle2D other)
     {
-        return (Center.DistanceTo(other.Center) + other.Radius) <= Radius;
+        double distanceBetweenCenters = Center.DistanceTo(other.Center);
+        return (distanceBetweenCenters + other.Radius) <= Radius;
     }
 }

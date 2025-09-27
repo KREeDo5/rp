@@ -5,11 +5,13 @@ namespace GeometryLib;
 /// </summary>
 public readonly struct Point2D(double x, double y)
 {
-    private double X { get;  } = x;
-    private double Y { get; } = y;
-
+    public double X { get;  } = x;
+    public double Y { get; } = y;
+    
+    // Максимальное отклонение, при котором расстояние всё ещё считается равным. (0.0001)
+    public const double Tolerance = 1e-4;
+    
     /// <summary>
-    /// TODO: ТРЕБУЕТ ПРОВЕРКИ
     /// Евклидово расстояние: sqrt((x1 - x2)^2 + (y1 - y2)^2)
     /// Длина кратчайшей прямой линии между двумя точками в многомерном пространстве,
     /// вычисляемая по обобщенной теореме Пифагора.

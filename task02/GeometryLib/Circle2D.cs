@@ -16,72 +16,90 @@ public class Circle2D
         Radius = radius;
     }
 
-    private Point2D Center { get; }
+    // Максимальное отклонение, при котором значения всё ещё считаются равными.
+    private const double Tolerance = 1e-10;
 
-    private double Radius { get; }
+    public Point2D Center { get; }
+
+    public double Radius { get; }
 
     public double Diameter => Radius * 2;
 
     /// <summary>
     /// Возвращает длину окружности
     /// </summary>
-    private double Circumference => 2 * Math.PI * Radius;
+    public double Circumference => 2 * Math.PI * Radius;
 
     /// <summary>
     /// Возвращает площадь круга
     /// </summary>
-    private double Area => Math.PI * Math.Pow(Radius, 2);
+    public double Area => Math.PI * Math.Pow(Radius, 2);
 
     /// <summary>
     /// Возвращает расстояние от точки `p` до ближайшей точки окружности
     /// </summary>
-    private double DistanceTo(Point2D p)
+    public double DistanceTo(Point2D p)
     {
-        return Radius - p.DistanceTo(Center);
-    }
-
-    private double DistanceToAnotherCircle(Circle2D p)
-    {
-        double distanceBetweenCenters = Center.DistanceTo(p.Center);
-        return distanceBetweenCenters - Radius - p.Radius;
+        double result = Radius - p.DistanceTo(Center);
+        return Math.Abs(result);
     }
 
     /// <summary>
     /// Возвращает расстояние между ближайшими друг к другу точками окружностей
     /// </summary>
-    private double DistanceTo(Circle2D p)
+    public double DistanceTo(Circle2D p)
     {
-        double result = DistanceToAnotherCircle(p);
-        if (result > 0)
+        double distanceBetweenCenters = Center.DistanceTo(p.Center);
+        double sumOfTwoRadius = Radius + p.Radius;
+        // Если центры окружностей не совпадают
+        if (distanceBetweenCenters > 0)
         {
-            return result;
+            // Если окружности находятся не друг в друге и не пересекаются
+            if (sumOfTwoRadius < distanceBetweenCenters)
+            {
+                return distanceBetweenCenters - sumOfTwoRadius;
+            }
+
+            // Если одна окружность полностью внутри другой
+            double minR = Math.Min(p.Radius, Radius);
+            double maxR = Math.Max(p.Radius, Radius);
+            if (distanceBetweenCenters + minR < maxR)
+            {
+                return maxR - (distanceBetweenCenters + minR);
+            }
+        }
+        // Если центры окружностей совпадают, но радиусы разные
+        else if (Math.Abs(p.Radius - Radius) > Tolerance)
+        {
+            return Math.Abs(p.Radius - Radius);
         }
 
         return 0;
     }
 
     /// <summary>
+    /// Пересекаются ли окружности
+    /// </summary>
+    public bool IntersectsWith(Circle2D other)
+    {
+        double result = DistanceTo(other);
+        return result < Tolerance;
+    }
+
+    /// <summary>
     /// Лежит ли точка внутри круга
     /// </summary>
-    private bool Contains(Point2D p)
+    public bool Contains(Point2D p)
     {
         return Center.DistanceTo(p) <= Radius;
     }
 
     /// <summary>
-    /// Пересекаются ли окружности
-    /// </summary>
-    private bool IntersectsWith(Circle2D other)
-    {
-        double result = DistanceToAnotherCircle(other);
-        return result <= 0;
-    }
-
-    /// <summary>
     /// Лежит ли другой круг полностью внутри этого круга
     /// </summary>
-    private bool Contains(Circle2D other)
+    public bool Contains(Circle2D other)
     {
-        return (Center.DistanceTo(other.Center) + other.Radius) <= Radius;
+        double distanceBetweenCenters = Center.DistanceTo(other.Center);
+        return (distanceBetweenCenters + other.Radius) <= Radius;
     }
 }

@@ -10,6 +10,32 @@ public class PhoneNumberTests
     //     Assert.Equal(-2.5, p.Y);
     // }
     
+    /// Тест инициализации номера телефона с некорректным номером
+    [Theory]
+    [MemberData(nameof(ExceptionInitPhoneNumberTestData))]
+    public void Cannot_Init_Circle(String text)
+    {
+        Assert.Throws<ArgumentException>(() => new PhoneNumber(text));
+    }
+
+    public static TheoryData<string> ExceptionInitPhoneNumberTestData()
+    {
+        return new TheoryData<string>
+        {
+            
+            { "12=34" },
+            { "" },
+            { " " },
+            { "%" },
+            { "+%" },
+            { "X" },
+            { "x" },
+            { "+X" },
+            { "x0-=" },
+        };
+    }
+
+    
     [Theory]
     [MemberData(nameof(MainNumberTestData))]
     public void Can_get_main_number(String text, String expected)
@@ -28,7 +54,7 @@ public class PhoneNumberTests
             { "1234455x", "+1234455"},
             { "1234455x2", "+1234455"},
             // Пограничные случаи
-            { "", "+" }, //TODO: некорректный номер!!!
+            { "===", "+" }, //TODO: некорректный номер!!!
         };
     }
     

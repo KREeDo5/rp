@@ -24,41 +24,32 @@ public class PhoneNumber
         text = NormalizeText(text);
         if (text.Length == 0)
         {
-            throw new ArgumentException("Введите номер телефона", nameof(text));
+            throw new ArgumentException("Номер телефона не может быть пустым", nameof(text));
         }
-        if (!IsValidSymbols(text))
+        if (!IsValidFormat(text))
         {
-            throw new ArgumentException("Недопустимые символы в номере телефона", nameof(text));
+            throw new ArgumentException("Недопустимый формат. Разрешены только цифры и один разделитель между ними.", nameof(text));
         }
         
-        // TODO: инициализация класса с разбиением на основной и добавочный номера
-        // удаляет символы , -, (, ) (пробелы, дефисы, круглые скобки)
-        //     проверяет оставшиеся символы на соответствие формату
-        //     сохраняет отдельно основной номер и добавочный номер
-        
-        // TODO: проверка строки на пустоту 
-        // if (text.isEmpty())
-        // {
-        //     throw new ArgumentOutOfRangeException(nameof(radius), "Введите номер телефона");
-        // }
+        // сохраняет отдельно основной номер и добавочный номер
         string[] parts = text.Split(Separator, 2);
-        MainNumber = int.Parse(Regex.Match(parts[0], @"\d+").Value);
-        if (parts.Length != 2)
+        if (parts[0] == "")
         {
-            return;
+            throw new ArgumentException("Номер телефона не может быть пустым", nameof(text));
         }
-
-        String resultAdditionalNumber = Regex.Match(parts[1], @"\d+").Value;
-        if (resultAdditionalNumber != "")
+        MainNumber = int.Parse(parts[0]);
+        
+        if (parts[1] != "")
         {
-            AdditionalNumber = int.Parse(resultAdditionalNumber);
+            AdditionalNumber = int.Parse(parts[1]);
         }
     }
     
-    // Разрешены: цифры, дефисы, скобки, + в начале, x (один раз, для добавочного номера)
-    private static bool IsValidSymbols(string text)
-    {
-        return Regex.IsMatch(text, @"^[\d\-\(\)x]+$", RegexOptions.IgnoreCase);
+    // Проверяет оставшиеся символы на соответствие формату. Разрешены только цифры и один разделитель между ними.
+    private static bool IsValidFormat(string text)
+    {   
+        string pattern = $@"^(\d+([{Separator}]\d+)?|\d*)$";
+        return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
     }
     
     // Убирает пробелы, "+" в начале, заменяет X на x
@@ -67,14 +58,18 @@ public class PhoneNumber
         if (string.IsNullOrEmpty(text))
             return text;
         
-        text = text.Replace(" ", "");
+        // удаляет пробелы, дефисы, круглые скобки
+        text = Regex.Replace(text, @"[\s\-\(\)]", "");
 
         if (text.StartsWith("+"))
         {
             text = text[1..];
         }
+        
+        // Заменяет все X/x/Х/х на Separator
+        text = Regex.Replace(text, "[XxХх]", Separator.ToString());
 
-        return text.Replace('X', 'x');
+        return text;
     }
     
     private const Char Separator = 'x';

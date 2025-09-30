@@ -13,7 +13,7 @@ public class PhoneNumberTests
     /// Тест инициализации номера телефона с некорректным номером
     [Theory]
     [MemberData(nameof(ExceptionInitPhoneNumberTestData))]
-    public void Cannot_Init_Circle(String text)
+    public void Cannot_Init_Phone_Number(String text)
     {
         Assert.Throws<ArgumentException>(() => new PhoneNumber(text));
     }
@@ -22,16 +22,20 @@ public class PhoneNumberTests
     {
         return new TheoryData<string>
         {
-            
-            { "12=34" },
             { "" },
             { " " },
-            { "%" },
-            { "+%" },
             { "X" },
             { "x" },
+            { "xxx" },
+            { "1xXx" },
+            { "xxx1" },
+            { "%" },
+            { "12=34" },
+            { "+%" },
             { "+X" },
-            { "x0-=" },
+            { "x0-="},
+            { "x0-2"},
+            { "0-2x"},
         };
     }
 

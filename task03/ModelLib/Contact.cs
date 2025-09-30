@@ -7,8 +7,6 @@ public class Contact
     // 2. Контакт может иметь 0, 1 или несколько номеров телефона
     // - один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
 
-    private List<PhoneNumber> _phoneNumbers;
-
     public Contact(String firstName, String middleName = "", String lastName = "")
     {
         if (String.IsNullOrEmpty(firstName.Trim())) //TODO: проверить на необходимость использования Trim
@@ -19,40 +17,72 @@ public class Contact
         FirstName = firstName;
         MiddleName = middleName;
         LastName = lastName;
-        _phoneNumbers = new List<PhoneNumber>();
+        _phoneNumbers = [];
     }
-    
+
     // Имя - не может быть пустой строкой
-    public String FirstName { get; } 
+    public String FirstName { get; }
+
     // Отчество
-    public String MiddleName { get; } 
+    public String MiddleName { get; }
+
     // Фамилия
     public String LastName { get; }
 
-    //- свойство `List<PhoneNumber> PhoneNumbers` возвращает все номера телефонов
-    public List<PhoneNumber> PhoneNumbers => new List<PhoneNumber>(_phoneNumbers); // возврат списка копий
+    private List<PhoneNumber> _phoneNumbers;
+
+    /// <summary>
+    /// Возвращает все номера телефонов.
+    /// Номера не могут быть изменены извне так как PhoneNumber - неизменяемый класс.
+    /// Список номеров не может быть изменён извне, так как возвращается IReadOnlyList.
+    /// </summary>
+    public IReadOnlyList<PhoneNumber> PhoneNumbers => _phoneNumbers;
 
 
-    // Возвращает основной номер телефона
+    /// <summary>
+    /// Возвращает основной номер телефона
+    /// </summary>
     public PhoneNumber? PrimaryPhoneNumber => _primaryPhoneNumber;
-    
+
     private PhoneNumber? _primaryPhoneNumber;
 
-    // Удаляет номер телефона
+    /// <summary>
+    /// Удаляет номер телефона
+    /// </summary>
     public void RemovePhoneNumber(PhoneNumber value)
     {
+        // Правило было отключено так как метод по ТЗ ничего не должен возвращать, а предупреждение CA1868 - рекомендует возвращать логическое значение
+#pragma warning disable CA1868
+        if (_phoneNumbers.Contains(value))
+#pragma warning restore CA1868
+        {
+            _phoneNumbers.Remove(value);
+        }
     }
 
-    // Добавляет номер телефона либо ничего не делает, если номер уже был
+    /// <summary>
+    /// Добавляет номер телефона либо ничего не делает, если номер уже был
+    /// </summary>
     public void AddPhoneNumber(PhoneNumber value)
     {
-        //TODO: проверка по хэшкоду, добавить equals в PhoneNumber
+        if (_phoneNumbers.Contains(value))
+        {
+            return;
+        }
+
+        _phoneNumbers.Add(value);
     }
 
-    // Меняет основной номер телефона
+    /// <summary>
+    /// Меняет основной номер телефона
+    /// </summary>
     public void SetPrimaryPhoneNumber(PhoneNumber value)
     {
-        //TODO: проверить, что номер есть в списке
+        if (!_phoneNumbers.Contains(value))
+        {
+            AddPhoneNumber(value);
+        }
+
         _primaryPhoneNumber = value;
     }
 }

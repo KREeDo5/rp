@@ -7,7 +7,7 @@ namespace ModelLib;
 /// </summary>
 public class PhoneNumber
 {
-    public PhoneNumber(string text)
+    public PhoneNumber(String text)
     {
         text = NormalizeText(text);
         if (text.Length == 0)
@@ -22,7 +22,7 @@ public class PhoneNumber
         }
 
         // Сохраняет отдельно основной номер и добавочный номер
-        string[] parts = text.Split(Separator, 2);
+        String[] parts = text.Split(Separator, 2);
         if (parts[0] == "")
         {
             throw new ArgumentException("Номер телефона не может быть пустым", nameof(text));
@@ -48,16 +48,16 @@ public class PhoneNumber
     }
 
     // Проверяет оставшиеся символы на соответствие формату. Разрешены только цифры и один разделитель между ними.
-    private static bool IsValidFormat(string text)
+    private static bool IsValidFormat(String text)
     {
-        string pattern = $@"^(\d+([{Separator}]\d+)?|\d*)$";
+        String pattern = $@"^(\d+([{Separator}]\d+)?|\d*)$";
         return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
     }
 
     // Убирает пробелы, "+" в начале, заменяет X на x
-    private static string NormalizeText(string text)
+    private static String NormalizeText(String text)
     {
-        if (string.IsNullOrEmpty(text))
+        if (String.IsNullOrEmpty(text))
             return text;
 
         // Удаляет пробелы, дефисы, круглые скобки
@@ -86,7 +86,7 @@ public class PhoneNumber
     public String Ext => AdditionalNumber?.ToString() ?? "";
 
     // Возвращает строку номера телефона с символом + в начале
-    public override string ToString() =>
+    public override String ToString() =>
         AdditionalNumber == null
             ? $"+{MainNumber}"
             : $"+{MainNumber}{Separator}{AdditionalNumber}";

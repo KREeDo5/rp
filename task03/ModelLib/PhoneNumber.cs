@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace ModelLib;
@@ -100,4 +101,26 @@ public class PhoneNumber
     /// Возвращает строку номера телефона с символом + в начале
     /// </summary>
     public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
+    
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is PhoneNumber other)
+        {
+            return Equals(other);
+        }
+
+        return false;
+    }
+    /// <summary>
+    ///  Проверяет равенство двух номеров.
+    /// </summary>
+    private bool Equals(PhoneNumber other)
+    {
+        return other._number == _number && other._ext == _ext;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_number, _ext);
+    }
 }

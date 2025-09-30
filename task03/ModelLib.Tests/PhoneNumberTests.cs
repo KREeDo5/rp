@@ -134,4 +134,13 @@ public class PhoneNumberTests
             { "+1-999-555-9999-0000-333x999-555-9999-0000-333", "+199955599990000333x99955599990000333" },
         };
     }
+    
+    /// Тест сравнения объектов PhoneNumber
+    [Fact]
+    public void Can_Find_The_Same_Phone_Number()
+    {
+        PhoneNumber a = new PhoneNumber("1234455x2");
+        PhoneNumber b = new PhoneNumber("+12-34(4)5-5x2");
+        Assert.Equal(a, b);
+    }
 }

@@ -2,21 +2,16 @@ namespace ModelLib;
 
 public class Contact
 {
-    // На основе класса `PhoneNumber` спроектируйте и реализуйте модель `Contact`:
-    //
-    // 2. Контакт может иметь 0, 1 или несколько номеров телефона
-    // - один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
-
     public Contact(String firstName, String middleName = "", String lastName = "")
     {
-        if (String.IsNullOrEmpty(firstName.Trim())) //TODO: проверить на необходимость использования Trim
+        if (String.IsNullOrEmpty(firstName.Trim()))
         {
             throw new ArgumentException("Имя - не может быть пустой строкой", nameof(firstName));
         }
 
-        FirstName = firstName;
-        MiddleName = middleName;
-        LastName = lastName;
+        FirstName = firstName.Trim();
+        MiddleName = middleName.Trim();
+        LastName = lastName.Trim();
         _phoneNumbers = [];
     }
 
@@ -72,7 +67,7 @@ public class Contact
         {
             return;
         }
-
+        //TODO:  один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
         _phoneNumbers.Add(value);
     }
 
@@ -87,7 +82,7 @@ public class Contact
         {
             AddPhoneNumber(value);
         }
-
+        //TODO:  один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
         _primaryPhoneNumber = value;
     }
 }

@@ -37,7 +37,7 @@ public class PhoneNumber
         MainNumber = long.Parse(parts[0]);
 
         if (parts.Length > 1 && parts[1] != "")
-        {   
+        {
             // Проверка длины дополнительного номера.
             if (parts[1].Length > 18)
             {
@@ -59,7 +59,9 @@ public class PhoneNumber
     private static String NormalizeText(String text)
     {
         if (String.IsNullOrEmpty(text))
+        {
             return text;
+        }
 
         // Удаляет пробелы, дефисы, круглые скобки
         text = Regex.Replace(text, @"[\s\-\(\)]", "");
@@ -88,7 +90,5 @@ public class PhoneNumber
 
     // Возвращает строку номера телефона с символом + в начале
     public override String ToString() =>
-        AdditionalNumber == null
-            ? $"+{MainNumber}"
-            : $"+{MainNumber}{Separator}{AdditionalNumber}";
+        AdditionalNumber == null ? $"+{MainNumber}" : $"+{MainNumber}{Separator}{AdditionalNumber}";
 }

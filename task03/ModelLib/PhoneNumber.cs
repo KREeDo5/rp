@@ -8,6 +8,15 @@ namespace ModelLib;
 /// </summary>
 public class PhoneNumber
 {
+    // Разделитель между основным номером и добавочным
+    private const Char Separator = 'x';
+    
+    // Приватное поле для хранения основного номера телефона
+    private readonly long _number;
+
+    // Приватное поле для хранения добавочного номера телефона
+    private readonly long? _ext;
+    
     public PhoneNumber(String text)
     {
         ArgumentNullException.ThrowIfNull(text);
@@ -49,7 +58,32 @@ public class PhoneNumber
             _ext = long.Parse(parts[1]);
         }
     }
+    
+    /// <summary>
+    /// Возвращает строку номера телефона с символом + в начале, но без добавочного номера
+    /// </summary>
+    public String Number => "+" + _number;
 
+    /// <summary>
+    /// Возвращает добавочный номер либо пустую строку
+    /// </summary>
+    public String Ext => _ext?.ToString() ?? "";
+
+    /// <summary>
+    /// Возвращает строку номера телефона с символом + в начале
+    /// </summary>
+    public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is PhoneNumber other)
+        {
+            return Equals(other);
+        }
+
+        return false;
+    }
+    
     // Проверяет оставшиеся символы на соответствие формату. Разрешены только цифры и один разделитель между ними.
     private static bool IsValidFormat(String text)
     {
@@ -77,40 +111,6 @@ public class PhoneNumber
         text = Regex.Replace(text, "[XxХх]", Separator.ToString());
 
         return text;
-    }
-
-    // Разделитель между основным номером и добавочным
-    private const Char Separator = 'x';
-
-    // Приватный параметр для хранения основного номера телефона
-    private readonly long _number;
-
-    // Приватный параметр для хранения добавочного номера телефона
-    private readonly long? _ext;
-
-    /// <summary>
-    /// Возвращает строку номера телефона с символом + в начале, но без добавочного номера
-    /// </summary>
-    public String Number => "+" + _number;
-
-    /// <summary>
-    /// Возвращает добавочный номер либо пустую строку
-    /// </summary>
-    public String Ext => _ext?.ToString() ?? "";
-
-    /// <summary>
-    /// Возвращает строку номера телефона с символом + в начале
-    /// </summary>
-    public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
-
-    public override bool Equals([NotNullWhen(true)] object? obj)
-    {
-        if (obj is PhoneNumber other)
-        {
-            return Equals(other);
-        }
-
-        return false;
     }
 
     /// <summary>

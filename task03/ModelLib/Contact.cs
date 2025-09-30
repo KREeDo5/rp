@@ -2,6 +2,10 @@ namespace ModelLib;
 
 public class Contact
 {
+    private readonly List<PhoneNumber> _phoneNumbers;
+    
+    private PhoneNumber? _primaryPhoneNumber;
+    
     public Contact(String firstName, String middleName = "", String lastName = "")
     {
         if (String.IsNullOrEmpty(firstName.Trim()))
@@ -30,8 +34,6 @@ public class Contact
     /// </summary>
     public String LastName { get; }
 
-    private List<PhoneNumber> _phoneNumbers;
-
     /// <summary>
     /// Возвращает все номера телефонов.
     /// Номера не могут быть изменены извне так как PhoneNumber - неизменяемый класс.
@@ -44,8 +46,7 @@ public class Contact
     /// Возвращает основной номер телефона
     /// </summary>
     public PhoneNumber? PrimaryPhoneNumber => _primaryPhoneNumber;
-
-    private PhoneNumber? _primaryPhoneNumber;
+    
 
     /// <summary>
     /// Удаляет номер телефона

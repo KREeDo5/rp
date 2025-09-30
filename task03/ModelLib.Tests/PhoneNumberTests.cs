@@ -76,9 +76,28 @@ public class PhoneNumberTests
     {
         return new TheoryData<String, String>
         {
-            // Основные сценарии
             { "1234455", ""},
             { "1234455x2", "2"},
+        };
+    }
+    
+    
+    [Theory]
+    [MemberData(nameof(SerializePhoneToStringTestData))]
+    public void Can_Serialize_To_String(String text, String expected)
+    {
+        PhoneNumber phoneNumber = new PhoneNumber(text);
+        String result = phoneNumber.ToString();
+        Assert.Equal(expected, result);
+    }
+    
+    public static TheoryData<String, String> SerializePhoneToStringTestData()
+    {
+        return new TheoryData<String, String>
+        {
+            { "1234455", "+1234455"},
+            { "1234455x2", "+1234455x2"},
+            { "+1-999-555-9999-0000-333x999-555-9999-0000-333", "+199955599990000333x99955599990000333"},
         };
     }
 }

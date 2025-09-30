@@ -15,13 +15,19 @@ public class Contact
         _phoneNumbers = [];
     }
 
-    // Имя - не может быть пустой строкой
+    /// <summary>
+    /// Имя - не может быть пустой строкой
+    /// </summary>
     public String FirstName { get; }
 
-    // Отчество
+    /// <summary>
+    /// Отчество
+    /// </summary>
     public String MiddleName { get; }
 
-    // Фамилия
+    /// <summary>
+    /// Фамилия
+    /// </summary>
     public String LastName { get; }
 
     private List<PhoneNumber> _phoneNumbers;
@@ -45,7 +51,7 @@ public class Contact
     /// Удаляет номер телефона
     /// </summary>
     public void RemovePhoneNumber(PhoneNumber value)
-    {   
+    {
         ArgumentNullException.ThrowIfNull(value);
         // Правило было отключено так как метод по ТЗ ничего не должен возвращать, а предупреждение CA1868 - рекомендует возвращать логическое значение
 #pragma warning disable CA1868
@@ -53,6 +59,10 @@ public class Contact
 #pragma warning restore CA1868
         {
             _phoneNumbers.Remove(value);
+            if (_phoneNumbers.Count == 0)
+            {
+                _primaryPhoneNumber = null;
+            }
         }
     }
 
@@ -61,13 +71,18 @@ public class Contact
     /// </summary>
     public void AddPhoneNumber(PhoneNumber value)
     {
+        if (_phoneNumbers.Count == 0)
+        {
+            SetPrimaryPhoneNumber(value);
+        }
+
         ArgumentNullException.ThrowIfNull(value);
 
         if (_phoneNumbers.Contains(value))
         {
             return;
         }
-        //TODO:  один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
+
         _phoneNumbers.Add(value);
     }
 
@@ -75,14 +90,14 @@ public class Contact
     /// Меняет основной номер телефона
     /// </summary>
     public void SetPrimaryPhoneNumber(PhoneNumber value)
-    {   
+    {
         ArgumentNullException.ThrowIfNull(value);
-        
+
         if (!_phoneNumbers.Contains(value))
         {
-            AddPhoneNumber(value);
+            _phoneNumbers.Add(value);
         }
-        //TODO:  один из номеров всегда помечен как основной (primary), кроме случая, когда нет ни одного номера
+
         _primaryPhoneNumber = value;
     }
 }

@@ -21,7 +21,7 @@ public class PhoneNumber
                 nameof(text));
         }
 
-        // Сохраняет отдельно основной номер и добавочный номер
+        // Разделяет строку на основной номер и дополнительный по разделителю.
         String[] parts = text.Split(Separator, 2);
         if (parts[0] == "")
         {
@@ -37,7 +37,8 @@ public class PhoneNumber
         MainNumber = long.Parse(parts[0]);
 
         if (parts.Length > 1 && parts[1] != "")
-        {
+        {   
+            // Проверка длины дополнительного номера.
             if (parts[1].Length > 18)
             {
                 throw new ArgumentException("Недопустимая длина добавочного номера телефона", nameof(text));

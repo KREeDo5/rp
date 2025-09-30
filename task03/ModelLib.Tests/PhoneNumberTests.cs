@@ -13,7 +13,7 @@ public class PhoneNumberTests
     public static TheoryData<string> ExceptionInitPhoneNumberTestData()
     {
         return new TheoryData<string>
-        {   
+        {
             // Пустая строка
             { "" },
             // Строка из пробелов
@@ -41,19 +41,26 @@ public class PhoneNumberTests
             // Перед корректным номером лишний символ
             { "$+7999888X777" },
             // Перед разделителем отсутствует основной номер
-            { "x0-2"},
+            { "x0-2" },
             // Перед разделителем отсутствует основной номер, есть лишний знак
-            { "=x0-"},
+            { "=x0-" },
             // После разделителя отсутствует дополнительный номер
-            { "0-2x"},
-            // Слишком длинный основной номер
-            { "+1-999-555-9999-0000-333-1x999-555-9999-0000-3333"},
-            // Слишком длинный дополнительный номер
-            { "+1-999-555-9999-0000-333x999-555-9999-0000-3333-1"},
+            { "0-2x" },
         };
     }
 
-    
+    /// Тест инициализации номера телефона с длинным номером
+    [Fact]
+    public void Cannot_Init_Out_Of_Range_Phone_Number()
+    {
+        // Слишком длинный основной номер
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new PhoneNumber("+1-999-555-9999-0000-333-1x999-555-9999-0000-3333"));
+        // Слишком длинный дополнительный номер
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new PhoneNumber("+1-999-555-9999-0000-333x999-555-9999-0000-3333-1"));
+    }
+
     [Theory]
     [MemberData(nameof(MainNumberTestData))]
     public void Can_get_main_number(String text, String expected)
@@ -68,19 +75,19 @@ public class PhoneNumberTests
         return new TheoryData<String, String>
         {
             // Основные сценарии
-            { "1234455", "+1234455"},
-            { "1234455x2", "+1234455"},
-            { "+7 999 888 77 66", "+79998887766"},
-            { "+7 999  888   77 66", "+79998887766"},
-            { "+7 (8362) 45-02-72", "+78362450272"},
-            { "7 (8362) 45-02-72", "+78362450272"},
-            { "8 (8362) 45-02-72", "+88362450272"},
+            { "1234455", "+1234455" },
+            { "1234455x2", "+1234455" },
+            { "+7 999 888 77 66", "+79998887766" },
+            { "+7 999  888   77 66", "+79998887766" },
+            { "+7 (8362) 45-02-72", "+78362450272" },
+            { "7 (8362) 45-02-72", "+78362450272" },
+            { "8 (8362) 45-02-72", "+88362450272" },
             // Граничные значения
-            { "1", "+1"},
-            { "+1-999-555-9999-0000-333", "+199955599990000333"},
+            { "1", "+1" },
+            { "+1-999-555-9999-0000-333", "+199955599990000333" },
         };
     }
-    
+
     [Theory]
     [MemberData(nameof(AdditionalNumberTestData))]
     public void Can_get_additional_number(String text, String expected)
@@ -89,23 +96,24 @@ public class PhoneNumberTests
         String result = phoneNumber.Ext;
         Assert.Equal(expected, result);
     }
+
     public static TheoryData<String, String> AdditionalNumberTestData()
     {
         return new TheoryData<String, String>
         {
-            { "1234455", ""},
+            { "1234455", "" },
             //ENG - x
-            { "1234455x2", "2"}, 
+            { "1234455x2", "2" },
             //ENG - X
-            { "1234455X2", "2"}, 
+            { "1234455X2", "2" },
             //RUS - х
-            { "1234455x2", "2"},
+            { "1234455x2", "2" },
             //RUS - Х
-            { "1234455X2", "2"},
+            { "1234455X2", "2" },
         };
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(SerializePhoneToStringTestData))]
     public void Can_Serialize_To_String(String text, String expected)
@@ -114,16 +122,16 @@ public class PhoneNumberTests
         String result = phoneNumber.ToString();
         Assert.Equal(expected, result);
     }
-    
+
     public static TheoryData<String, String> SerializePhoneToStringTestData()
     {
         return new TheoryData<String, String>
         {
-            { "1234455", "+1234455"},
-            { "1234455x2", "+1234455x2"},
-            {"+78362450272", "+78362450272"},
-            {"+12345678901x1234", "+12345678901x1234"},
-            { "+1-999-555-9999-0000-333x999-555-9999-0000-333", "+199955599990000333x99955599990000333"},
+            { "1234455", "+1234455" },
+            { "1234455x2", "+1234455x2" },
+            { "+78362450272", "+78362450272" },
+            { "+12345678901x1234", "+12345678901x1234" },
+            { "+1-999-555-9999-0000-333x999-555-9999-0000-333", "+199955599990000333x99955599990000333" },
         };
     }
 }

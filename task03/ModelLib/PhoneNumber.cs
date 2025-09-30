@@ -31,20 +31,20 @@ public class PhoneNumber
         // Проверка длины основного номера. Максимум 18 цифр (номера в Германии).
         if (parts[0].Length > 18)
         {
-            throw new ArgumentException("Недопустимая длина номера телефона", nameof(text));
+            throw new ArgumentOutOfRangeException(nameof(text),"Недопустимая длина номера телефона" );
         }
 
-        MainNumber = long.Parse(parts[0]);
+        _number = long.Parse(parts[0]);
 
         if (parts.Length > 1 && parts[1] != "")
         {
             // Проверка длины дополнительного номера.
             if (parts[1].Length > 18)
-            {
-                throw new ArgumentException("Недопустимая длина добавочного номера телефона", nameof(text));
+            {   
+                throw new ArgumentOutOfRangeException(nameof(text),"Недопустимая длина добавочного номера телефона" );
             }
 
-            AdditionalNumber = long.Parse(parts[1]);
+            _ext = long.Parse(parts[1]);
         }
     }
 
@@ -79,16 +79,15 @@ public class PhoneNumber
 
     private const Char Separator = 'x';
 
-    private long MainNumber { get; }
-    private long? AdditionalNumber { get; }
+    private readonly long _number;
+    private readonly long? _ext;
 
     // Возвращает строку номера телефона с символом + в начале, но без добавочного номера
-    public String Number => "+" + MainNumber;
+    public String Number => "+" + _number;
 
     // Возвращает добавочный номер либо пустую строку
-    public String Ext => AdditionalNumber?.ToString() ?? "";
+    public String Ext => _ext?.ToString() ?? "";
 
     // Возвращает строку номера телефона с символом + в начале
-    public override String ToString() =>
-        AdditionalNumber == null ? $"+{MainNumber}" : $"+{MainNumber}{Separator}{AdditionalNumber}";
+    public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
 }

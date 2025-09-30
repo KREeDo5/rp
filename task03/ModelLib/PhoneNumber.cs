@@ -31,7 +31,7 @@ public class PhoneNumber
         // Проверка длины основного номера. Максимум 18 цифр (номера в Германии).
         if (parts[0].Length > 18)
         {
-            throw new ArgumentOutOfRangeException(nameof(text),"Недопустимая длина номера телефона" );
+            throw new ArgumentOutOfRangeException(nameof(text), "Недопустимая длина номера телефона");
         }
 
         _number = long.Parse(parts[0]);
@@ -40,8 +40,8 @@ public class PhoneNumber
         {
             // Проверка длины дополнительного номера.
             if (parts[1].Length > 18)
-            {   
-                throw new ArgumentOutOfRangeException(nameof(text),"Недопустимая длина добавочного номера телефона" );
+            {
+                throw new ArgumentOutOfRangeException(nameof(text), "Недопустимая длина добавочного номера телефона");
             }
 
             _ext = long.Parse(parts[1]);
@@ -76,18 +76,28 @@ public class PhoneNumber
 
         return text;
     }
-
+    
+    // Разделитель между основным номером и добавочным
     private const Char Separator = 'x';
 
+    // Приватный параметр для хранения основного номера телефона
     private readonly long _number;
+
+    // Приватный параметр для хранения добавочного номера телефона
     private readonly long? _ext;
 
-    // Возвращает строку номера телефона с символом + в начале, но без добавочного номера
+    /// <summary>
+    /// Возвращает строку номера телефона с символом + в начале, но без добавочного номера
+    /// </summary>
     public String Number => "+" + _number;
 
-    // Возвращает добавочный номер либо пустую строку
+    /// <summary>
+    /// Возвращает добавочный номер либо пустую строку
+    /// </summary>
     public String Ext => _ext?.ToString() ?? "";
 
-    // Возвращает строку номера телефона с символом + в начале
+    /// <summary>
+    /// Возвращает строку номера телефона с символом + в начале
+    /// </summary>
     public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
 }

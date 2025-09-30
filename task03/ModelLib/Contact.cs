@@ -50,7 +50,8 @@ public class Contact
     /// Удаляет номер телефона
     /// </summary>
     public void RemovePhoneNumber(PhoneNumber value)
-    {
+    {   
+        ArgumentNullException.ThrowIfNull(value);
         // Правило было отключено так как метод по ТЗ ничего не должен возвращать, а предупреждение CA1868 - рекомендует возвращать логическое значение
 #pragma warning disable CA1868
         if (_phoneNumbers.Contains(value))
@@ -65,6 +66,8 @@ public class Contact
     /// </summary>
     public void AddPhoneNumber(PhoneNumber value)
     {
+        ArgumentNullException.ThrowIfNull(value);
+
         if (_phoneNumbers.Contains(value))
         {
             return;
@@ -77,7 +80,9 @@ public class Contact
     /// Меняет основной номер телефона
     /// </summary>
     public void SetPrimaryPhoneNumber(PhoneNumber value)
-    {
+    {   
+        ArgumentNullException.ThrowIfNull(value);
+        
         if (!_phoneNumbers.Contains(value))
         {
             AddPhoneNumber(value);

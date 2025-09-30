@@ -10,6 +10,7 @@ public class PhoneNumber
 {
     public PhoneNumber(String text)
     {
+        ArgumentNullException.ThrowIfNull(text);
         text = NormalizeText(text);
         if (text.Length == 0)
         {
@@ -59,7 +60,7 @@ public class PhoneNumber
     // Убирает пробелы, "+" в начале, заменяет X на x
     private static String NormalizeText(String text)
     {
-        if (String.IsNullOrEmpty(text))
+        if (text.Length == 0)
         {
             return text;
         }
@@ -77,7 +78,7 @@ public class PhoneNumber
 
         return text;
     }
-    
+
     // Разделитель между основным номером и добавочным
     private const Char Separator = 'x';
 
@@ -101,7 +102,7 @@ public class PhoneNumber
     /// Возвращает строку номера телефона с символом + в начале
     /// </summary>
     public override String ToString() => _ext == null ? $"+{_number}" : $"+{_number}{Separator}{_ext}";
-    
+
     public override bool Equals([NotNullWhen(true)] object? obj)
     {
         if (obj is PhoneNumber other)
@@ -111,6 +112,7 @@ public class PhoneNumber
 
         return false;
     }
+
     /// <summary>
     ///  Проверяет равенство двух номеров.
     /// </summary>

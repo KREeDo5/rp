@@ -10,7 +10,7 @@ public class Contact
 
     private PhoneNumber? _primaryPhoneNumber;
 
-    public Contact(String firstName, String middleName = "", String lastName = "")
+    public Contact(String firstName, String? middleName = "", String? lastName = "")
     {
         if (String.IsNullOrEmpty(firstName.Trim()))
         {
@@ -18,8 +18,8 @@ public class Contact
         }
 
         _firstName = firstName.Trim();
-        _middleName = middleName.Trim();
-        _lastName = lastName.Trim();
+        _middleName = middleName?.Trim() ?? "";
+        _lastName = lastName?.Trim() ?? "";
         _phoneNumbers = [];
     }
 

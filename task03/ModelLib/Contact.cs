@@ -2,10 +2,14 @@ namespace ModelLib;
 
 public class Contact
 {
+    private String _firstName;
+    private String _middleName;
+    private String _lastName;
+
     private readonly List<PhoneNumber> _phoneNumbers;
-    
+
     private PhoneNumber? _primaryPhoneNumber;
-    
+
     public Contact(String firstName, String middleName = "", String lastName = "")
     {
         if (String.IsNullOrEmpty(firstName.Trim()))
@@ -13,26 +17,46 @@ public class Contact
             throw new ArgumentException("Имя - не может быть пустой строкой", nameof(firstName));
         }
 
-        FirstName = firstName.Trim();
-        MiddleName = middleName.Trim();
-        LastName = lastName.Trim();
+        _firstName = firstName.Trim();
+        _middleName = middleName.Trim();
+        _lastName = lastName.Trim();
         _phoneNumbers = [];
     }
 
     /// <summary>
     /// Имя - не может быть пустой строкой
     /// </summary>
-    public String FirstName { get; }
+    public String FirstName
+    {
+        get { return _firstName; }
+        set
+        {
+            if (String.IsNullOrEmpty(value.Trim()))
+            {
+                throw new ArgumentException("Имя - не может быть пустой строкой", nameof(value));
+            }
+
+            _firstName = value.Trim();
+        }
+    }
 
     /// <summary>
     /// Отчество
     /// </summary>
-    public String MiddleName { get; }
+    public String MiddleName
+    {
+        get { return _middleName; }
+        set { _middleName = value?.Trim() ?? ""; }
+    }
 
     /// <summary>
     /// Фамилия
     /// </summary>
-    public String LastName { get; }
+    public String LastName
+    {
+        get { return _lastName; }
+        set { _lastName = value?.Trim() ?? ""; }
+    }
 
     /// <summary>
     /// Возвращает все номера телефонов.
@@ -46,7 +70,7 @@ public class Contact
     /// Возвращает основной номер телефона
     /// </summary>
     public PhoneNumber? PrimaryPhoneNumber => _primaryPhoneNumber;
-    
+
 
     /// <summary>
     /// Удаляет номер телефона

@@ -192,4 +192,50 @@ public class ContactTests
         Assert.Equal(c, contact.PrimaryPhoneNumber);
         Assert.Equal(3, contact.PhoneNumbers.Count);
     }
+    
+    /// Тест удаления несуществующего номера телефона
+    [Fact]
+    public void Can_Remove_Non_Existing_Phone_Number()
+    {
+        Contact contact = new Contact("Тест");
+        PhoneNumber a = new PhoneNumber("+7 (999) 888-77-66");
+        PhoneNumber c = new PhoneNumber("8123456");
+
+        contact.AddPhoneNumber(a);
+        contact.RemovePhoneNumber(c);
+        Assert.Equal(a, contact.PrimaryPhoneNumber);
+        Assert.Single(contact.PhoneNumbers);
+    }
+    
+    /// Тест удаления существующего номера телефона
+    [Fact]
+    public void Can_Remove_Existing_Phone_Number()
+    {
+        Contact contact = new Contact("Тест");
+        PhoneNumber c = new PhoneNumber("8123456");
+        
+        contact.AddPhoneNumber(c);
+        contact.RemovePhoneNumber(c);
+        Assert.Null(contact.PrimaryPhoneNumber);
+        Assert.Empty(contact.PhoneNumbers);
+    }
+    
+    /// Тест удаления основного номера телефона, если есть другие номера
+    [Fact]
+    public void Can_Set_New_Primary_Phone_Number_Automatically()
+    {
+        Contact contact = new Contact("Тест");
+        PhoneNumber a = new PhoneNumber("+7 (999) 888-77-66");
+        PhoneNumber b = new PhoneNumber("8123456");
+        PhoneNumber c = new PhoneNumber("1(111)111-111-11-11");
+        contact.AddPhoneNumber(a);
+        contact.AddPhoneNumber(b);
+        contact.AddPhoneNumber(c);
+        
+        contact.RemovePhoneNumber(contact.PrimaryPhoneNumber!);
+        
+        Assert.Equal(2, contact.PhoneNumbers.Count);
+        Assert.NotNull(contact.PrimaryPhoneNumber);
+        Assert.NotEqual(a, contact.PrimaryPhoneNumber!);
+    }
 }

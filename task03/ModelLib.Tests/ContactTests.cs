@@ -2,7 +2,7 @@ namespace ModelLib.Tests;
 
 public class ContactTests
 {
-    /// Тест инициализации контакта телефона с пустым именем
+    /// Негативные тесты инициализации контакта телефона с пустым именем
     [Fact]
     public void Cannot_Init_Contact()
     {
@@ -10,6 +10,7 @@ public class ContactTests
         Assert.Throws<ArgumentException>(() => new Contact("    "));
     }
     
+    /// Тесты инициализации контакта
     [Theory]
     [MemberData(nameof(CorrectInitContactTestData))]
     public void Correct_Init_Contact(Dictionary<string, string?> input, Dictionary<string, string> expected)
@@ -87,5 +88,51 @@ public class ContactTests
                 }
             },
         };
+    }
+    
+    
+    /// Тест установки имени контакта
+    [Fact]
+    public void Can_Set_Contact_FirstName()
+    {
+        Contact value = new Contact("Тест");
+        value.FirstName = " Тюлень ";
+        Assert.Equal("Тюлень", value.FirstName);
+    }
+    
+    /// Тест установки пустого имени контакта
+    [Fact]
+    public void Cannot_Set_Contact_Empty_FirstName()
+    {
+        Contact value = new Contact("Тест");
+        value.FirstName = "Тюлень";
+        Assert.Throws<ArgumentException>(() => value.FirstName = "");
+        Assert.Throws<ArgumentException>(() => value.FirstName = "   ");
+    }
+    
+    /// Тест установки отчества контакта
+    [Fact]
+    public void Can_Set_Contact_MiddleName()
+    {
+        Contact value = new Contact("Тест", "Тестович", "Тестовый");
+        value.MiddleName = "Тюлень";
+        Assert.Equal("Тюлень", value.MiddleName);
+        value.MiddleName = "   ";
+        Assert.Equal("", value.MiddleName);
+        value.MiddleName = "окак";
+        Assert.Equal("окак", value.MiddleName);
+    }
+
+    /// Тест установки фамилии контакта
+    [Fact]
+    public void Can_Set_Contact_LastName()
+    {
+        Contact value = new Contact("Тест", "Тестович", "Тестовый");
+        value.LastName = "Тюлень";
+        Assert.Equal("Тюлень", value.LastName);
+        value.LastName = "   ";
+        Assert.Equal("", value.LastName);
+        value.LastName = "окак";
+        Assert.Equal("окак", value.LastName);
     }
 }

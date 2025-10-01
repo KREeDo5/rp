@@ -87,6 +87,9 @@ public class Contact
             if (_phoneNumbers.Count == 0)
             {
                 _primaryPhoneNumber = null;
+            } else if (Equals(_primaryPhoneNumber, value))
+            {
+                _primaryPhoneNumber = _phoneNumbers[0];
             }
         }
     }

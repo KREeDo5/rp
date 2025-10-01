@@ -2,17 +2,6 @@ namespace GeometryLib.Tests;
 
 public class Circle2DTests
 {
-    /// Тест корректной инициализации круга
-    [Fact]
-    public void Init_Circle_Correctly()
-    {
-        Point2D center = new Point2D(0, 0);
-        const double circleRadius = 2.0;
-        Circle2D circle = new Circle2D(center, circleRadius);
-        Assert.Equal(center, circle.Center);
-        Assert.Equal(circleRadius, circle.Radius);
-    }
-
     /// Тест инициализации круга с некорректным радиусом
     [Theory]
     [MemberData(nameof(ExceptionInitCircleTestData))]

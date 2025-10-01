@@ -5,6 +5,13 @@ namespace GeometryLib;
 /// </summary>
 public class Circle2D
 {
+    // Максимальное отклонение, при котором значения всё ещё считаются равными.
+    private const double Tolerance = 1e-10;
+    
+    private readonly Point2D _center;
+
+    private readonly double _radius;
+    
     public Circle2D(Point2D center, double radius)
     {
         if (radius <= 0)
@@ -12,35 +19,31 @@ public class Circle2D
             throw new ArgumentOutOfRangeException(nameof(radius), "Радиус должен быть положительным.");
         }
 
-        Center = center;
-        Radius = radius;
+        _center = center;
+        _radius = radius;
     }
-
-    // Максимальное отклонение, при котором значения всё ещё считаются равными.
-    private const double Tolerance = 1e-10;
-
-    public Point2D Center { get; }
-
-    public double Radius { get; }
-
-    public double Diameter => Radius * 2;
+    
+    /// <summary>
+    /// Возвращает диаметр окружности
+    /// </summary>
+    public double Diameter => _radius * 2;
 
     /// <summary>
     /// Возвращает длину окружности
     /// </summary>
-    public double Circumference => 2 * Math.PI * Radius;
+    public double Circumference => 2 * Math.PI * _radius;
 
     /// <summary>
     /// Возвращает площадь круга
     /// </summary>
-    public double Area => Math.PI * Math.Pow(Radius, 2);
+    public double Area => Math.PI * Math.Pow(_radius, 2);
 
     /// <summary>
     /// Возвращает расстояние от точки `p` до ближайшей точки окружности
     /// </summary>
     public double DistanceTo(Point2D p)
     {
-        double result = Radius - p.DistanceTo(Center);
+        double result = _radius - p.DistanceTo(_center);
         return Math.Abs(result);
     }
 
@@ -49,8 +52,8 @@ public class Circle2D
     /// </summary>
     public double DistanceTo(Circle2D p)
     {
-        double distanceBetweenCenters = Center.DistanceTo(p.Center);
-        double sumOfTwoRadius = Radius + p.Radius;
+        double distanceBetweenCenters = _center.DistanceTo(p._center);
+        double sumOfTwoRadius = _radius + p._radius;
         // Если центры окружностей не совпадают
         if (distanceBetweenCenters > 0)
         {
@@ -61,17 +64,17 @@ public class Circle2D
             }
 
             // Если одна окружность полностью внутри другой
-            double minR = Math.Min(p.Radius, Radius);
-            double maxR = Math.Max(p.Radius, Radius);
+            double minR = Math.Min(p._radius, _radius);
+            double maxR = Math.Max(p._radius, _radius);
             if (distanceBetweenCenters + minR < maxR)
             {
                 return maxR - (distanceBetweenCenters + minR);
             }
         }
         // Если центры окружностей совпадают, но радиусы разные
-        else if (Math.Abs(p.Radius - Radius) > Tolerance)
+        else if (Math.Abs(p._radius - _radius) > Tolerance)
         {
-            return Math.Abs(p.Radius - Radius);
+            return Math.Abs(p._radius - _radius);
         }
 
         return 0;
@@ -91,7 +94,7 @@ public class Circle2D
     /// </summary>
     public bool Contains(Point2D p)
     {
-        return Center.DistanceTo(p) <= Radius;
+        return _center.DistanceTo(p) <= _radius;
     }
 
     /// <summary>
@@ -99,7 +102,7 @@ public class Circle2D
     /// </summary>
     public bool Contains(Circle2D other)
     {
-        double distanceBetweenCenters = Center.DistanceTo(other.Center);
-        return (distanceBetweenCenters + other.Radius) <= Radius;
+        double distanceBetweenCenters = _center.DistanceTo(other._center);
+        return (distanceBetweenCenters + other._radius) <= _radius;
     }
 }
